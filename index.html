@@ -79,7 +79,7 @@
   section.hero{
     background:linear-gradient(180deg, var(--ink) 0%, #0d1c30 100%);
     color:var(--text-on-ink);
-    padding:76px 0 56px;
+    padding:36px 0 56px;
     position:relative;
     overflow:hidden;
   }
@@ -94,7 +94,7 @@
   }
   .hero-grid{
     position:relative; z-index:1;
-    max-width:680px;
+    max-width:760px;
   }
   .eyebrow{
     display:inline-flex; align-items:center; gap:8px;
@@ -104,10 +104,11 @@
   }
   .eyebrow::before{ content:"//"; opacity:0.7; }
   h1.headline{
-    font-size:clamp(2.1rem, 4.2vw, 3.1rem);
-    line-height:1.08;
+    font-size:clamp(1.5rem, 4.4vw, 2.5rem);
+    line-height:1.18;
     font-weight:700;
     margin-bottom:20px;
+    text-wrap:balance;
   }
   h1.headline .accent{ color:var(--teal); }
   .hero-sub{
@@ -157,9 +158,9 @@
   .section.on-ink .tl-item.current .tl-badge{ background:var(--amber); color:#3a2506; }
 
   /* ---------- ABOUT ---------- */
-  .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:start; }
+  .about-grid{ max-width:74ch; }
   .about-grid p{ color:var(--text-muted); line-height:1.75; font-size:1.02rem; margin-bottom:16px; }
-  .stat-strip{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .stat-strip{ display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; margin-bottom:48px; }
   .stat-card{
     background:var(--canvas-panel); border:1px solid var(--canvas-line); border-radius:var(--radius);
     padding:18px;
@@ -181,6 +182,10 @@
     padding:4px 12px; border-radius:5px;
   }
   .ai-box p{ color:var(--text-muted); line-height:1.7; font-size:0.96rem; margin:0; }
+  .ai-box ul{ list-style:none; margin:0; padding:0; }
+  .ai-box ul li{ position:relative; padding-left:18px; color:var(--text-muted); font-size:0.94rem; line-height:1.6; margin-bottom:8px; }
+  .ai-box ul li:last-child{ margin-bottom:0; }
+  .ai-box ul li::before{ content:"▸"; position:absolute; left:0; top:1px; color:var(--teal); font-size:0.82rem; }
   .ai-box a{ color:var(--teal-dim); font-weight:600; text-decoration:underline; text-underline-offset:2px; }
   .ai-box a:hover{ color:var(--teal); }
 
@@ -267,13 +272,15 @@
   /* ---------- RESPONSIVE ---------- */
   @media (max-width:860px){
     nav.links{ display:none; }
-    .about-grid{ grid-template-columns:1fr; }
+    .stat-strip{ grid-template-columns:1fr 1fr; }
     .skills-grid{ grid-template-columns:1fr 1fr; }
     .card-row, .awards{ grid-template-columns:1fr; }
   }
   @media (max-width:560px){
+    .stat-strip{ grid-template-columns:1fr; }
     .skills-grid{ grid-template-columns:1fr; }
     .callout{ flex-direction:column; align-items:flex-start; }
+    h1.headline{ font-size:1.7rem; line-height:1.22; }
   }
 </style>
 </head>
@@ -309,26 +316,36 @@
 
 <section class="section" id="about">
   <div class="wrap">
+    <div class="stat-strip reveal">
+      <div class="stat-card"><div class="n">13+</div><div class="l">Years in IT industry</div></div>
+      <div class="stat-card"><div class="n">7+</div><div class="l">Years leading data analysis</div></div>
+      <div class="stat-card"><div class="n">6+</div><div class="l">Years QA &amp; testing</div></div>
+      <div class="stat-card"><div class="n">6</div><div class="l">Companies, incl. Meta, Adobe, Cisco &amp; Cloudera</div></div>
+    </div>
     <div class="about-grid">
       <div class="reveal">
         <span class="section-tag">About</span>
-        <h2 style="margin-bottom:18px;">A BI creator shaped by QA precision to deliver accuracy, clarity, and reliability</h2>
-        <p>I'm a Data Analyst and BI Developer based in Tracy, CA, with end-to-end experience designing and deploying data visualizations using <span class="hl">SQL, Tableau, Power BI, and SAP Business Objects</span> — complete with filters, drill-downs, and parameters that let non-technical stakeholders actually use the data.</p>
-        <p>My path started in software QA, which still shapes how I work: every dashboard I ship is validated against the source data before it reaches an executive's screen. That combination — analytical build plus QA rigor — has taken me from testing web applications to briefing C-level leaders at Meta on the numbers that drive their decisions.</p>
-        <p>Beyond core BI tooling, I round out the data lifecycle with cloud data warehousing in Snowflake, CRM-driven insight through Salesforce Einstein, big-data platform work across Hive, Impala, Cloudera Manager, and HUE, DAX-based modeling in Microsoft Azure Databricks, and agile project tracking in Jira — giving me a full-stack view from raw data pipeline to boardroom-ready report.</p>
-        <p>I also bring practical <span class="hl">AI fluency</span> to the table — from prompt engineering to AI-assisted prototyping and analytics — which I use daily to work faster and surface insights sooner.</p>
-        <p>I'm currently supporting the Executive (EXE) Support Engineering team at Meta.</p>
+        <h2 style="margin-bottom:18px;">A dashboard builder who started in QA</h2>
+        <p>A Data Analyst and BI Developer based in Tracy, CA, turning enterprise data into decisions leaders can act on.</p>
+        <ul class="tl-desc" style="margin-bottom:8px;">
+          <li>End-to-end experience designing and deploying data visualizations using <span class="hl">SQL, Tableau, Power BI, and SAP Business Objects</span> — complete with filters, drill-downs, and parameters built for non-technical stakeholders.</li>
+          <li>Started my career in software QA, and that rigor still shapes how I work: every dashboard I ship is validated against the source data before it reaches an executive's screen.</li>
+          <li>That combination of analytical build plus QA discipline has taken me from testing web applications to briefing C-level leaders at Meta on the numbers that drive their decisions.</li>
+          <li>Round out the data lifecycle with cloud data warehousing in Snowflake, CRM-driven insight through Salesforce Einstein, big-data platform work across Hive, Impala, Cloudera Manager, and HUE, DAX-based modeling in Microsoft Azure Databricks, and agile project tracking in Jira — a full-stack view from raw data pipeline to boardroom-ready report.</li>
+          <li>Bring practical <span class="hl">AI fluency</span> to the table — from prompt engineering to AI-assisted prototyping and analytics — used daily to work faster and surface insights sooner.</li>
+          <li>Currently supporting the Executive (EXE) Support Engineering team at Meta.</li>
+        </ul>
 
         <div class="ai-box reveal">
           <span class="ai-tag">AI &amp; Emerging Tech</span>
-          <p>I completed a <span class="hl">Vibe Coding</span> short course organized by Dan Olsen, and I'm hands-on with AI-assisted prototyping through <a href="https://eot.olsensolutions.com/f/a/1H35xgMqWl3HM-jlu_kXNw~~/AAAHURA~/369D82sijCH-9g4XFLypEr4hss-qrzCKdhrKCO7-ZnnYXzFS2WoHWq8snkz6alT0owUOLQ2cXuhQDE5OGIW4_frw16nOKNCxFKXwsRJ43ZDQcdlCZoT2RbKDkeoTO5GOE3yN8Yx44BsLpw97-Ct1O-lDE2-zP6Fe-heGTEC8cSiyCraSsLmAhcvEulwCyI17" target="_blank" rel="noopener">Magic Patterns</a>, <a href="https://eot.olsensolutions.com/f/a/5iWg5CU6u1Vc0WB-b-5Y3g~~/AAAHURA~/WVmy5q8zWje2u_4tmylIWG__BGJpIIhKTfax0EijCyJKxN1mUiC5qd9bEOIWF5OmzmDrvdo_SbrFy5TAzQeX765x-jOcTa-wTG0b54s9ps1nTHiqH2pB-LfjVDH-xckBj7UTo1dmneyG5CMq9YQgNQ~~" target="_blank" rel="noopener">v0 (by Vercel)</a>, and Figma. I bring solid <span class="hl">prompt engineering</span> skills, using Claude, Copilot, and Gemini to speed up day-to-day work. At Meta, I apply Metamate, Meta AI, NotebookLM, Manus, and Datamate for data exploration, SQL assistance, dashboard generation, data-lineage tracing, and AI-assisted research and investigations.</p>
+          <ul>
+            <li>Completed a <span class="hl">Vibe Coding</span> short course led by Dan Olsen</li>
+            <li>AI-assisted prototyping with <a href="https://eot.olsensolutions.com/f/a/1H35xgMqWl3HM-jlu_kXNw~~/AAAHURA~/369D82sijCH-9g4XFLypEr4hss-qrzCKdhrKCO7-ZnnYXzFS2WoHWq8snkz6alT0owUOLQ2cXuhQDE5OGIW4_frw16nOKNCxFKXwsRJ43ZDQcdlCZoT2RbKDkeoTO5GOE3yN8Yx44BsLpw97-Ct1O-lDE2-zP6Fe-heGTEC8cSiyCraSsLmAhcvEulwCyI17" target="_blank" rel="noopener">Magic Patterns</a>, <a href="https://eot.olsensolutions.com/f/a/5iWg5CU6u1Vc0WB-b-5Y3g~~/AAAHURA~/WVmy5q8zWje2u_4tmylIWG__BGJpIIhKTfax0EijCyJKxN1mUiC5qd9bEOIWF5OmzmDrvdo_SbrFy5TAzQeX765x-jOcTa-wTG0b54s9ps1nTHiqH2pB-LfjVDH-xckBj7UTo1dmneyG5CMq9YQgNQ~~" target="_blank" rel="noopener">v0 (by Vercel)</a>, and Figma</li>
+            <li>Strong <span class="hl">prompt engineering</span> skills using Claude, Copilot, and Gemini to speed up daily work</li>
+            <li>Experience with Claude for Excel and Claude for data analysis</li>
+            <li>At Meta: use Metamate, Meta AI, NotebookLM, Manus, and Datamate for data exploration, SQL assistance, dashboard generation, data-lineage tracing, and research</li>
+          </ul>
         </div>
-      </div>
-      <div class="stat-strip reveal">
-        <div class="stat-card"><div class="n">13+</div><div class="l">Years in IT industry</div></div>
-        <div class="stat-card"><div class="n">7+</div><div class="l">Years leading data analysis</div></div>
-        <div class="stat-card"><div class="n">6+</div><div class="l">Years QA &amp; testing</div></div>
-        <div class="stat-card"><div class="n">6</div><div class="l">Companies, incl. Meta, Adobe, Cisco &amp; Cloudera</div></div>
       </div>
     </div>
   </div>
